@@ -19,23 +19,24 @@ module.exports = {
   globals: {
     // "wx": "readonly",
   },
-  extends: [
-    'eslint:recommended',
-    'prettier'
+  "extends": [
+    "eslint:recommended",
+    "prettier"
     // "plugin:react/recommended",
     // "plugin:jsx-control-statements/recommended", // 需要另外配合babel插件使用
   ],
-  settings: {},
-  plugins: [
-    '@typescript-eslint',
-    'prettier'
+  "settings": {
+  },
+  "plugins": [
+    "@typescript-eslint", 
+    "prettier"
     // "jsx-control-statements"
   ],
-  rules: {
-    'prettier/prettier': 2, // 这样prettier的提示能够以错误的形式在控制台输出
-    'no-extra-semi': 0, // 禁止不必要的分号
-    quotes: ['error', 'single'], // 强制使用单引号
-    'no-unused-vars': 0 // 不允许未定义的变量
+  "rules": {
+    "prettier/prettier": 2, // 这样prettier的提示能够以错误的形式在控制台输出
+    "no-extra-semi": 0, // 禁止不必要的分号
+    "quotes": ['error', 'single'], // 强制使用单引号
+    "no-unused-vars": 0 // 不允许未定义的变量
     // ...你自己的配置
   }
 };
