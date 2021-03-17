@@ -1,3 +1,3 @@
 //
-
-console.log('ps ts !!!')
+const VAL:string = 'value'
+console.log('ps ts !!!',VAL)
