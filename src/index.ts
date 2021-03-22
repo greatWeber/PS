@@ -19,3 +19,6 @@ class PS {
     }
   }
 }
+(global as any).PS = PS;
+
+export default PS;
