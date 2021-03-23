@@ -1,24 +1,35 @@
 // 入口
 
-import { Options } from './types/index';
+import { Options } from './types/index'
+import Views from './dom/views'
 class PS {
-  private _options: Options;
-  public context: HTMLElement | null;
+  private _options: Options
+  public context: HTMLElement | null
+  private _viewInstance: Views
   constructor(options: Options) {
     this._options = Object.assign(options, {
       width: '100%',
       height: '100%'
     });
     if (!this._options.query) {
-      throw new Error(' new ps class,must has query filed!!!');
+      throw new Error(' new ps class,must has query filed!!!')
     }
-    this.context = document.querySelector(this._options.query);
+    this.context = document.querySelector(this._options.query)
 
     if (!this.context) {
-      throw new Error(`can't found the ${this._options.query} element!!!`);
+      throw new Error(`can't found the ${this._options.query} element!!!`)
     }
   }
-}
-(global as any).PS = PS;
 
-export default PS;
+  public drawContainer(){
+    if(!this._viewInstance){
+      this._viewInstance = new Views(this.context)
+    }
+    this._viewInstance.drawContainer()
+  }
+}
+
+
+(global as any).PS = PS
+
+export default PS
