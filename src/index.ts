@@ -19,6 +19,8 @@ class PS {
     if (!this.context) {
       throw new Error(`can't found the ${this._options.query} element!!!`)
     }
+
+    this.drawContainer()
   }
 
   public drawContainer(){

@@ -5,11 +5,19 @@ describe('test ps main view',()=>{
     document.body.innerHTML = `
       <div id="app"></div>
     `
-    console.log(document.querySelector('#app'))
+    const $app = document.querySelector('#app')
     const ps = new PS({
       query:'#app'
     })
     expect(ps.context).not.toBeNull()
-    expect(ps.context).toEqual(document.querySelector('#app'))
+    expect(ps.context).toEqual($app)
+
+    const $container = $app.querySelector('.PS--container')
+    expect($container).not.toBeNull()
+    expect($container.querySelector('.PS--sidebar')).not.toBeNull()
+    expect($container.querySelector('.PS--drawbox')).not.toBeNull()
+    expect($container.querySelector('.PS--infobox')).not.toBeNull()
+
+
   })
 })
