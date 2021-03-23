@@ -2,6 +2,7 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { Template } = require('webpack')
+const MiniCssExtractPlugin  = require("mini-css-extract-plugin")
 
 module.exports = {
   mode: 'development',
@@ -15,13 +16,19 @@ module.exports = {
   devServer:{
     contentBase:'./public',
     hot: true,
-    port: 8888,
+    port: 8899,
   },
   plugins:[
     new HtmlWebpackPlugin({
       title:'ps',
       template: './index.html'
-    })
+    }),
+    new MiniCssExtractPlugin({
+      // Options similar to the same options in webpackOptions.output
+      // both options are optional
+      filename: '[name].css',
+      chunkFilename: '[id].css',
+    }),
   ],
   resolve: {
     // Add '.ts' and '.tsx' as resolvable extensions.
@@ -45,7 +52,24 @@ module.exports = {
         { test: /\.tsx?$/, loader: "awesome-typescript-loader" },
 
         // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
-        { enforce: "pre", test: /\.js$/, loader: "source-map-loader" }
+        { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
+        {
+          test: /\.less$/,
+          use: [
+            {
+              loader: MiniCssExtractPlugin.loader,
+            },
+            'css-loader',
+            'less-loader',
+            {
+              loader: 'style-resources-loader',
+              options: {
+                  patterns: path.resolve(__dirname,'../src/styles/variable.less'),
+                  injector: 'append'
+              }
+            }
+          ]
+        }
     ]
   },
 
