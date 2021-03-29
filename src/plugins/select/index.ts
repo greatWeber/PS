@@ -23,6 +23,7 @@ class Select {
 
   public init() {
     this.drawPlugin();
+    this.bindEvents();
   }
 
   public drawPlugin() {
@@ -33,15 +34,18 @@ class Select {
       `SIDEBAR-cell ${this._options.className}`
     );
     if (_op.icon) {
-      const $icon = createElmByClassName(this._container, 'span', `SIDEBAR-cell--icon ${_op.icon}`);
+      const $icon = createElmByClassName(this._container, 'span', `SIDEBAR-cell--icon ps-icon ${_op.icon}`);
     } else if (_op.img) {
       const $img = createElmByClassName(this._container, 'img', 'SIDEBAR-cell--img');
       $img.setAttribute('src', _op.img);
     }
   }
 
-  public bingEvents() {
-    this._container.addEventListener('click', this.handleClickCell, false);
+  public bindEvents() {
+    const handleClickCell = (e: MouseEvent) => {
+      this.handleClickCell(e);
+    };
+    this._container.addEventListener('click', handleClickCell, false);
   }
 
   // 点击工具

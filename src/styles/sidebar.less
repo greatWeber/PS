@@ -1,0 +1,26 @@
+.SIDEBAR-cell {
+  width: 100%;
+  height: @sidebarCellHeight;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.8;
+  background-color: @commonbarBgColor;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  .SIDEBAR-cell--icon {
+    color: #999;
+  }
+
+}
+
+.SIDEBAR-cell__selected {
+  background-color: @themeColor;
+
+  .SIDEBAR-cell--icon {
+    color: #fff;
+  }
+}
