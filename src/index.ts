@@ -7,10 +7,13 @@ import { setStyles } from './dom/createNode';
 import './styles/index.less';
 
 class PS {
-  private _options: Options;
   public context: HTMLElement | null;
-  private _viewInstance: Views;
+  public viewInstance: Views;
+  public cpr: any; // current operation 缩写
+
+  private _options: Options;
   private _plugins: Array<any> = []; //TODO:这里的类型填啥好呢
+
   static _plugins: Array<any> = [];
 
   constructor(options: Options) {
@@ -37,10 +40,10 @@ class PS {
   }
 
   public drawContainer() {
-    if (!this._viewInstance) {
-      this._viewInstance = new Views(this.context);
+    if (!this.viewInstance) {
+      this.viewInstance = new Views(this.context);
     }
-    this._viewInstance.drawContainer();
+    this.viewInstance.drawContainer();
 
     if (this._options.width || this._options.height) {
       this.setContainerStyles({
@@ -51,7 +54,7 @@ class PS {
   }
 
   public setContainerStyles(styles: styles) {
-    setStyles(this._viewInstance.container, styles);
+    setStyles(this.viewInstance.container, styles);
   }
   //动态引进插件 TODO: 考虑一下怎么配置webpack
   private _importPlugins() {
@@ -60,7 +63,7 @@ class PS {
         .then((module) => {
           console.log(module);
           const plugin = module.default;
-          const pluginInstance = new plugin();
+          const pluginInstance = new plugin(this);
           this._plugins.push(pluginInstance);
         })
         .catch((error) => {

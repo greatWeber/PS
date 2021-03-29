@@ -21,7 +21,7 @@ describe('test ps main view',()=>{
 
   })
 
-  it('_importPlugins',()=>{
+  it('_importPlugins',async ()=>{
     document.body.innerHTML = `
       <div id="app"></div>
     `
@@ -32,8 +32,8 @@ describe('test ps main view',()=>{
         plugins:['selecter']
       })
     }
-    expect(newThing()).resolves.toBe(undefined)
-    // expect(newThing).rejects.toThrow(Error)
+    // expect(newThing()).resolves.toBe(undefined)
+    // await expect(newThing).rejects.toThrow()
     // 没法访问私有属性，怎么验证？
   })
 })
