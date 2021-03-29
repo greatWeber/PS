@@ -10,11 +10,15 @@ class PS {
   private _options: Options;
   public context: HTMLElement | null;
   private _viewInstance: Views;
+  private _plugins: Array<any> = []; //TODO:这里的类型填啥好呢
+  static _plugins: Array<any> = [];
+
   constructor(options: Options) {
     this._options = Object.assign(
       {
         width: '100%',
-        height: '100%'
+        height: '100%',
+        plugins: ['select']
       },
       options
     );
@@ -28,6 +32,8 @@ class PS {
     }
 
     this.drawContainer();
+    // 初始化内置插件
+    this._importPlugins();
   }
 
   public drawContainer() {
@@ -46,6 +52,22 @@ class PS {
 
   public setContainerStyles(styles: styles) {
     setStyles(this._viewInstance.container, styles);
+  }
+  //动态引进插件 TODO: 考虑一下怎么配置webpack
+  private _importPlugins() {
+    for (const pluginName of this._options.plugins) {
+      import(`./plugins/${pluginName}/index`)
+        .then((module) => {
+          console.log(module);
+          const plugin = module.default;
+          const pluginInstance = new plugin();
+          this._plugins.push(pluginInstance);
+        })
+        .catch((error) => {
+          throw new Error(error);
+          // console.error(error);
+        });
+    }
   }
 }
 

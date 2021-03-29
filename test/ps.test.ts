@@ -20,4 +20,20 @@ describe('test ps main view',()=>{
 
 
   })
+
+  it('_importPlugins',()=>{
+    document.body.innerHTML = `
+      <div id="app"></div>
+    `
+    const newThing = async()=>{
+
+      const ps = new PS({
+        query:'#app',
+        plugins:['selecter']
+      })
+    }
+    expect(newThing()).resolves.toBe(undefined)
+    // expect(newThing).rejects.toThrow(Error)
+    // 没法访问私有属性，怎么验证？
+  })
 })
