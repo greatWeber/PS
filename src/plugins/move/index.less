@@ -1,0 +1,28 @@
+.ATTRBOX-align {
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  font-size: 14px;
+  height: 100%;
+
+  .ATTRBOX-align--label {
+    padding-right: 10px;
+  }
+
+  .ATTRBOX-align--icon {
+    display: inline-block;
+    padding: 10px;
+    border-radius: 5px;
+    opacity: 0.8;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  .ATTRBOX-align--icon__selected {
+    background: @attrboxSelectedBg;
+    color: @attrboxSelectedColor;
+    opacity: 1;
+  }
+}

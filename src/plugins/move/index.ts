@@ -1,6 +1,7 @@
 import { createElmByClassName } from '../../dom/createNode';
 import PS from '../../index';
 import { pluginOptions } from '../../types';
+import './index.less';
 
 /**
  * 移动工具插件
@@ -81,7 +82,7 @@ class Move {
    */
   private drawAttrBar() {
     this._itemAlign = createElmByClassName(this.ps.viewInstance.attrbar, 'div', 'ATTRBOX-align');
-    let childStr: string = '<span class="ATTRBOX-align--label">对齐方式: </span>';
+    let childStr: string = '<span class="ATTRBOX-align--label">对齐方式 : </span>';
 
     Move.alignType.forEach((value, key) => {
       childStr += `
