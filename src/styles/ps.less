@@ -1,49 +1,48 @@
 .PS--container {
-  position: relative;
-  border: 1px solid @themeColor;
-  box-sizing: border-box;
+	position: relative;
+	border: 1px solid @themeColor;
+	box-sizing: border-box;
 
-  .PS--sidebar {
-    position: absolute;
-    left: 0; 
-    top: 0;
-    z-index: 1;
-    width: @sidebarWidth; 
-    height: 100%;
-    border-right: 1px solid @themeColor;
-    background-color: @commonbarBgColor;
-  }
+	.PS--sidebar {
+		position: absolute;
+		left: 0;
+		top: 0;
+		z-index: 1;
+		width: @sidebarWidth;
+		height: 100%;
+		border-right: 1px solid @themeColor;
+		background-color: @commonbarBgColor;
+	}
 
-  .PS--attrbar {
-    position: absolute;
-    left: @sidebarWidth+1px; 
-    top: 0;
-    z-index: 1;
-    color: @attrboxColor;
-    width: calc(100% - @sidebarWidth - 1px);
-    height: @attrbarHeight;
-    border-bottom: 1px solid @themeColor;
-    background-color: @commonbarBgColor;
-  }
+	.PS--attrbar {
+		position: absolute;
+		left: @sidebarWidth+1px;
+		top: 0;
+		z-index: 1;
+		color: @attrboxColor;
+		width: calc(100% - @sidebarWidth - 1px);
+		height: @attrbarHeight;
+		border-bottom: 1px solid @themeColor;
+		background-color: @commonbarBgColor;
+	}
 
-  .PS--infobox {
-    position: absolute;
-    right: 0;
-    top: @attrbarHeight+1px;
-    z-index: 1;
-    width: @infoboxWidth;
-    height: calc(100% - @attrbarHeight - 1px);
-    border-left: 1px solid @themeColor;
-    background-color: @commonbarBgColor;
-  }
+	.PS--infobox {
+		position: absolute;
+		right: 0;
+		top: @attrbarHeight+1px;
+		z-index: 1;
+		width: @infoboxWidth;
+		height: calc(100% - @attrbarHeight - 1px);
+		border-left: 1px solid @themeColor;
+		background-color: @commonbarBgColor;
+	}
 
-  .PS--drawbox {
-    position: absolute;
-    left: @sidebarWidth+1px;
-    right: @infoboxWidth+1px;
-    top: @attrbarHeight+1px;
-    bottom: 0;
-    background-color: @drawboxBgColor;
-  }
+	.PS--drawbox {
+		position: absolute;
+		left: @sidebarWidth+1px;
+		right: @infoboxWidth+1px;
+		top: @attrbarHeight+1px;
+		bottom: 0;
+		background-color: @drawboxBgColor;
+	}
 }
-

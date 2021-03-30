@@ -3,6 +3,7 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { Template } = require('webpack')
 const MiniCssExtractPlugin  = require("mini-css-extract-plugin")
+const StylelintWebpackPlugin = require('stylelint-webpack-plugin')
 
 module.exports = {
   mode: 'development',
@@ -29,6 +30,14 @@ module.exports = {
       filename: '[name].css',
       chunkFilename: '[id].css',
     }),
+    new StylelintWebpackPlugin({
+      context: 'src',
+     configFile: path.resolve(__dirname,'../stylelint.config.js'),
+     files: '*/*.less',
+     failOnError: false,
+     quiet: true,
+     fix: true
+    })
   ],
   resolve: {
     // Add '.ts' and '.tsx' as resolvable extensions.
