@@ -21,7 +21,7 @@ class PS {
       {
         width: '100%',
         height: '100%',
-        plugins: ['select']
+        plugins: ['move']
       },
       options
     );
