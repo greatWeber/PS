@@ -1,0 +1,29 @@
+.INFOBOX-messages {
+	width: 100%;
+	height: 50%;
+	overflow-y: scroll;
+	box-sizing: border-box;
+	border-bottom: 1px solid @themeColor;
+
+	.INFOBOX-messages--tabs {
+		height: 30px;
+		line-height: 30px;
+		display: flex;
+		color: @infoboxColor;
+		cursor: pointer;
+		border-bottom: 1px solid @themeColor;
+	}
+
+	.INFOBOX-tabs--item {
+		flex: 1;
+		text-align: center;
+
+		& + .INFOBOX-tabs--item {
+			border-left: 1px solid @themeColor;
+		}
+	}
+
+	.INFOBOX-tabs--item__selected {
+		background-color: @themeColor;
+	}
+}
