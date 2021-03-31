@@ -21,6 +21,23 @@ class Views {
     this.drawbox = createElmByClassName(this.container, 'div', 'PS--drawbox');
     this.infobox = createElmByClassName(this.container, 'div', 'PS--infobox');
   }
+
+  /**
+   * 绘制信息区域
+   */
+  public drawInfobox(): void {
+    const $infoTop = createElmByClassName(this.infobox, 'div', 'INFOBOX-messages');
+    const childStr = `
+      <div class="infobox-messages--tabs">
+        <p class="infobox-tabs--item">历史</p>
+        <p class="infobox-tabs--item">信息</p>
+      </div>
+
+        <div class="infobox-tabs-history"></div>
+        <div class="infobox-tabs-info"></div>
+    `;
+    $infoTop.innerHTML = childStr;
+  }
 }
 
 export default Views;

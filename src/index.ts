@@ -4,11 +4,13 @@ import { Options } from './types/index';
 import Views from './dom/views';
 import { styles } from './types/dom';
 import { setStyles } from './dom/createNode';
+import Infobox from './infobox';
 import './styles/index.less';
 
 class PS {
   public context: HTMLElement | null;
   public viewInstance: Views;
+  public infoboxInstance: Infobox;
   public cpr: any; // current operation 缩写
 
   private _options: Options;
@@ -35,6 +37,8 @@ class PS {
     }
 
     this.drawContainer();
+    // 初始化infobox
+    this.infoboxInstance = new Infobox(this);
     // 初始化内置插件
     this._importPlugins();
   }
