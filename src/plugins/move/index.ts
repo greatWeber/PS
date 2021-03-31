@@ -11,6 +11,8 @@ class Move {
   private _options: pluginOptions;
   private _container: HTMLElement;
   private _itemAlign: HTMLElement;
+  // 工具类变量
+  private _itemPrevSelected: HTMLElement = null;
 
   // static alignType: Array<string> = ['top','vertical','bottom','left','horizontal','right'];
   static alignType: Map<string, string> = new Map([
@@ -36,7 +38,6 @@ class Move {
 
   public init() {
     this.drawPlugin();
-    this.drawAttrBar();
     this.bindEvents();
   }
 
@@ -47,6 +48,7 @@ class Move {
       'div',
       `SIDEBAR-cell ${this._options.className}`
     );
+    this._itemAlign = createElmByClassName(this.ps.viewInstance.attrbar, 'div', 'ATTRBOX-align');
     if (_op.icon) {
       const $icon = createElmByClassName(this._container, 'span', `SIDEBAR-cell--icon ps-icon ${_op.icon}`);
     } else if (_op.img) {
@@ -59,7 +61,11 @@ class Move {
     const handleClickCell = (e: MouseEvent) => {
       this.handleClickCell(e);
     };
+    const handleClickAlign = (e: MouseEvent) => {
+      this.handleClickAlign(e);
+    };
     this._container.addEventListener('click', handleClickCell, false);
+    this._itemAlign.addEventListener('click', handleClickAlign, false);
   }
 
   // 点击工具
@@ -74,6 +80,7 @@ class Move {
     if (this.ps.cpr === this) return;
     this.ps.cpr = this;
     this._container.classList.add('SIDEBAR-cell__selected');
+    this.drawAttrBar();
   }
 
   /**
@@ -81,7 +88,6 @@ class Move {
    * 1. 对齐方式：顶对齐；垂直居中对齐；底对齐；左对齐；水平居中对齐；右对齐
    */
   private drawAttrBar() {
-    this._itemAlign = createElmByClassName(this.ps.viewInstance.attrbar, 'div', 'ATTRBOX-align');
     let childStr: string = '<span class="ATTRBOX-align--label">对齐方式 : </span>';
 
     Move.alignType.forEach((value, key) => {
@@ -96,6 +102,30 @@ class Move {
       `;
     });
     this._itemAlign.innerHTML = childStr;
+  }
+
+  /**
+   * 点击对齐按钮，选中当前，并执行核心方法
+   * @param e
+   */
+  private handleClickAlign(e: MouseEvent) {
+    // console.log(e);
+    const $target = e.target as HTMLElement;
+    const dataset: DOMStringMap = $target.dataset;
+    if (dataset.role !== 'move' || dataset.attr !== 'align') return;
+    if (this._itemPrevSelected) {
+      this._itemPrevSelected.classList.toggle('ATTRBOX-align--icon__selected');
+    }
+    $target.classList.toggle('ATTRBOX-align--icon__selected');
+    this._itemPrevSelected = $target;
+    this.itemAlignCode(dataset.value);
+  }
+  /**
+   * 实现对齐的核心函数
+   * @param type
+   */
+  private itemAlignCode(type: string) {
+    // TODO
   }
 }
 
