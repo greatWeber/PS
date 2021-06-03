@@ -12,3 +12,9 @@ export interface pluginOptions {
   img?: string, //同上，二选一，icon>img
   
 }
+
+export interface History {
+  el: string; //元素选择器
+  title:string; //显示的标题
+  style: string; // 样式
+}

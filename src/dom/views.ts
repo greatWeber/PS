@@ -25,7 +25,7 @@ class Views {
   /**
    * 绘制信息区域
    */
-  public drawInfobox(): void {
+  public drawInfoboxMessages(): HTMLElement {
     const $infoTop = createElmByClassName(this.infobox, 'div', 'INFOBOX-messages');
     const childStr = `
       <div class="INFOBOX-messages--tabs">
@@ -37,6 +37,7 @@ class Views {
         <div class="INFOBOX-tabs-info"></div>
     `;
     $infoTop.innerHTML = childStr;
+    return $infoTop;
   }
 }
 
